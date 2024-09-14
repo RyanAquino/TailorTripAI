@@ -1,5 +1,11 @@
 {
-  "ollama_llm_model": "test",
+  "llm": {
+    "model": "llama3-70b-8192",
+    "api_key": ""
+  },
+  "google_service": {
+    "api_key": ""
+  },
   "host": "0.0.0.0",
   "port": 3002,
   "debug": false

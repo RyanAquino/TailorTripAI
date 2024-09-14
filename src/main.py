@@ -8,8 +8,6 @@ from router import api_router
 
 def create_app():
     core_container = Application()
-    # core_container.init_resources()
-    # core_container.wire(modules=[__name__])
     fast_app = FastAPI()
     fast_app.container = core_container
     fast_app.include_router(api_router, prefix="/api/v1")
