@@ -13,23 +13,22 @@ class SchedulerService:
     def __init__(self, ai_service: AIService, gmaps: googlemaps.Client):
         self._ai_service = ai_service
         self._gmaps = gmaps
+        self.sys_prompt = """
+        You are an expert virtual travel planner. Your primary function is to provide an itinerary featuring the most popular and must-visit places. 
+        You will be given a list of guidelines to strictly follow. 
+        You will respond in JSON format with the key being the date formatted in Month day and the values would be the list of locations with details stored in a key named locations.
+        You will only return the JSON response without additional text.
+
+        Location details:
+        1. Name - Location name
+        2. Description - Short description of the location
+        3. from - star time of the location
+        4. to - end time  of the location
+        5. Country - Location country
+        """
 
     def run(self, query_params: GenerateScheduleQueryParams):
-        self._ai_service.initialize_system_prompt(
-            """
-            You are an expert virtual travel planner. Your primary function is to provide an itinerary featuring the most popular and must-visit places. 
-            You will be given a list of guidelines to strictly follow. 
-            You will respond in JSON format with the key being the date formatted in Month day and the values would be the list of locations with details stored in a key named locations.
-            You will only return the JSON response without additional text.
-
-            Location details:
-            1. Name - Location name
-            2. Description - Short description of the location
-            3. from - star time of the location
-            4. to - end time  of the location
-            5. Country - Location country
-            """
-        )
+        self._ai_service.initialize_system_prompt(self.sys_prompt)
         self._ai_service.add_user_prompt(
             f"""
             Here are the list of guidelines:
@@ -101,5 +100,18 @@ class SchedulerService:
             }
             gmap_url = url + urllib.parse.urlencode(params)
             response_data[key]["gmaps_url"] = gmap_url
+
+        return response_data
+
+    def generate_tags(self):
+        self._ai_service.initialize_system_prompt(self.sys_prompt)
+        self._ai_service.add_user_prompt(
+            """
+            Generate a maximum of 32 list of tags that will help you further give personalized results. 
+            Return the list of tags in a JSON format with key named tags.
+            """
+        )
+        response = self._ai_service.ai_model.invoke(input=self._ai_service.prompts)
+        response_data = json.loads(response.content)
 
         return response_data
