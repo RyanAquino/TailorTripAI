@@ -1,11 +1,10 @@
 from langchain_core.language_models import BaseChatModel
-from langchain_core.prompts import ChatPromptTemplate
 
 
 class AIService:
 
     def __init__(self, ai_model: BaseChatModel):
-        self.prompts = None
+        self.prompts: list = []
         self._ai_model = ai_model
 
     def initialize_system_prompt(self, prompt: str):

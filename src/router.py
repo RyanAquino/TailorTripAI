@@ -1,4 +1,5 @@
 from fastapi import APIRouter
+
 from endpoints import generate_schedule
 
 api_router = APIRouter()

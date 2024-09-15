@@ -1,5 +1,6 @@
 from dependency_injector.wiring import Provide, inject
 from fastapi import APIRouter, Depends
+
 from src.container import Application
 from src.schemas.requests import GenerateScheduleQueryParams
 from src.services.scheduler_service import SchedulerService

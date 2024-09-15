@@ -53,7 +53,9 @@ class SchedulerService:
         for date, plan_details in response_data.items():
             day_location = []
             for location in plan_details.get("locations"):
-                day_location.append(f"{location.get("Name")}, {location.get("Country")}")
+                day_location.append(
+                    f"{location.get("Name")}, {location.get("Country")}"
+                )
             day_locations.append(day_location)
 
         optimized_day_locations = []
@@ -64,7 +66,7 @@ class SchedulerService:
                 destination=query_params.home_location,
                 waypoints=day_stops,
                 optimize_waypoints=True,
-                mode="walking"
+                mode="walking",
             )
             waypoint_order = directions_result[0].get("waypoint_order")
             sorted_stops = []
@@ -88,15 +90,14 @@ class SchedulerService:
         response_data = json.loads(response.content)
         logger.info(response_data)
 
-
         for idx, key in enumerate(response_data):
-            url = 'https://www.google.com/maps/dir/?'
+            url = "https://www.google.com/maps/dir/?"
             params = {
-                'api': 1,
-                'origin': query_params.home_location,
-                'destination': query_params.home_location,
-                'waypoints': "|".join(optimized_day_locations[idx]),
-                "travelmode": "walking"
+                "api": 1,
+                "origin": query_params.home_location,
+                "destination": query_params.home_location,
+                "waypoints": "|".join(optimized_day_locations[idx]),
+                "travelmode": "walking",
             }
             gmap_url = url + urllib.parse.urlencode(params)
             response_data[key]["gmaps_url"] = gmap_url

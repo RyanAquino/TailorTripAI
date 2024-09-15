@@ -1,0 +1,35 @@
+[tool.poetry]
+name = "tailortripai"
+version = "0.1.0"
+description = "Tailor Trip AI"
+authors = ["RyanAquino <ryan.aquino7110@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+dependency-injector = "^4.42.0"
+fastapi = {extras = ["standard"], version = "^0.114.2"}
+googlemaps = "^4.10.0"
+langchain = "^0.3.0"
+langchain-groq = "^0.2.0"
+loguru = "^0.7.2"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^24.8.0"
+flake8 = "^7.1.1"
+isort = "^5.13.2"
+mypy = "^1.11.2"
+pre-commit = "^3.8.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+# Isort
+[tool.isort]
+profile = "black"
+
+[tool.mypy]
+ignore_missing_imports = true
