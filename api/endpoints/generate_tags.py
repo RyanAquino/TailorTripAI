@@ -1,8 +1,8 @@
 from dependency_injector.wiring import Provide, inject
 from fastapi import APIRouter, Depends
 
-from src.container import Application
-from src.services.scheduler_service import SchedulerService
+from api.container import Application
+from api.services.scheduler_service import SchedulerService
 
 router = APIRouter()
 

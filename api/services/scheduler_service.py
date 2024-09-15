@@ -4,8 +4,8 @@ import urllib.parse
 import googlemaps
 from loguru import logger
 
-from src.schemas.requests import GenerateScheduleQueryParams
-from src.services.ai_service import AIService
+from api.schemas.requests import GenerateScheduleQueryParams
+from api.services.ai_service import AIService
 
 
 class SchedulerService:
