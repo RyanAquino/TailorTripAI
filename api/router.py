@@ -1,6 +1,5 @@
-from fastapi import APIRouter
-
 from endpoints import generate_schedule, generate_tags
+from fastapi import APIRouter
 
 api_router = APIRouter()
 

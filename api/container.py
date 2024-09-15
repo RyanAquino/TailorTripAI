@@ -2,8 +2,8 @@ import googlemaps
 from dependency_injector import containers, providers
 from langchain_groq import ChatGroq
 
-from src.services.ai_service import AIService
-from src.services.scheduler_service import SchedulerService
+from api.services.ai_service import AIService
+from api.services.scheduler_service import SchedulerService
 
 
 class Services(containers.DeclarativeContainer):
@@ -30,7 +30,9 @@ class Services(containers.DeclarativeContainer):
 
 
 class Application(containers.DeclarativeContainer):
-    wiring_config = containers.WiringConfiguration(packages=["endpoints"])
+    wiring_config = containers.WiringConfiguration(
+        packages=["endpoints"],
+    )
 
     config = providers.Configuration(json_files=["config.json"])
     services = providers.Container(

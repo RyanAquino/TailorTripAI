@@ -36,5 +36,5 @@ http://localhost:3002/docs
 
 ### Setup with Docker (Alternative)
 ```
-docker-compose -f deployments/docker-compose.yml up -d
+docker-compose -f deployments/docker-compose.yaml up -d
 ```
