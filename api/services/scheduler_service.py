@@ -107,7 +107,7 @@ class SchedulerService:
         self._ai_service.initialize_system_prompt(self.sys_prompt)
         self._ai_service.add_user_prompt(
             """
-            Generate a maximum of 32 list of tags that will help you further give personalized results. 
+            Generate a maximum of 32 list of single word tags that will help you further give personalized results. 
             Return the list of tags in a JSON format with key named tags.
             """
         )
