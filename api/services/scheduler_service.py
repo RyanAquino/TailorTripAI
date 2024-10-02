@@ -85,7 +85,7 @@ class SchedulerService:
     def integrate_gmaps_urls(query_params, optimized_day_locations, response_data):
         for idx, item_data in enumerate(response_data.items()):
             key, val = item_data
-            url = "https://www.google.com/maps/dir/?"
+            url = "://www.google.com/maps/dir/?"
             params = {
                 "api": 1,
                 "origin": query_params.home_location,
